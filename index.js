@@ -30,12 +30,32 @@ async function run() {
 
         // create database and inserting data
         const usersCollection = client.db("hobbins").collection("users");
+        const groupsCollection = client.db("hobbins").collection("groups");
 
         // sending data with post method
         app.post('/users', async (req, res) => {
             const userProfile = req.body;
             console.log(userProfile)
             const result = await usersCollection.insertOne(userProfile);
+            res.send(result);
+        })
+
+
+        app.post('/groups', async (req, res) => {
+            const allGroups = req.body;
+            console.log(allGroups);
+            const result = await groupsCollection.insertOne(allGroups);
+            res.send(result);
+        })
+
+
+        app.get('/users', async (req, res) => {
+            const result = await usersCollection.find().toArray();
+            res.send(result);
+        })
+
+        app.get('/groups', async (req, res) => {
+            const result = await groupsCollection.find().toArray();
             res.send(result);
         })
 
