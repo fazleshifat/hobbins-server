@@ -59,10 +59,23 @@ async function run() {
             res.send(result);
         })
 
-        app.get('/group/:id', async (req, res) => {
+        app.get('/groups/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: new ObjectId(id) }
             const result = await groupsCollection.findOne(query);
+            res.send(result);
+        })
+
+        app.put('/groups/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) }
+            const options = { upsert: true }
+            const updatedGroup = req.body;
+            const updatedDoc = {
+                $set: updatedGroup
+            }
+
+            const result = await groupsCollection.updateOne(filter, updatedDoc, options);
             res.send(result);
         })
 
@@ -70,8 +83,14 @@ async function run() {
             const result = await groupsCollection.find().toArray();
             res.send(result)
         })
+        // app.get('/updateGroup/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     const query = { _id: new ObjectId(id) }
+        //     const result = await groupsCollection.findOne().findOne(query);
+        //     res.send(result)
+        // })
 
-        app.delete('/group/:id', async (req, res) => {
+        app.delete('/groups/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: new ObjectId(id) }
             const result = await groupsCollection.deleteOne(query);
