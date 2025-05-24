@@ -2,10 +2,6 @@
 
 A lightweight front-end project built to interact with the [Hobbins API]
 (https://hobbins-server.vercel.app/).
-for groups- https://hobbins-server.vercel.app/groups
-for indivisual groups- https://hobbins-server.vercel.app/groups/:id
-for users- https://hobbins-server.vercel.app/users
-for indivisual users- https://hobbins-server.vercel.app/users/:id
 
 This client connects to user and group data via RESTful endpoints.
 
