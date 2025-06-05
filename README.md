@@ -1,4 +1,4 @@
-# 🌐 Hobbins Client
+# 🌐 Hobbins Server
 
 A lightweight front-end project built to interact with the [Hobbins API]
 (https://hobbins-server.vercel.app/).
